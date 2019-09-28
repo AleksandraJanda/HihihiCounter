@@ -1,3 +1,9 @@
+.idea
+*.iml
+/out
+/META-INF
+/files
+
 # Compiled class file
 *.class
 
