@@ -1,5 +1,6 @@
 .root {
     -fx-background-color: #ffffff;
+    -fx-opacity: 100%;
 }
 
 .menu-button {

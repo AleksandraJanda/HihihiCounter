@@ -1,6 +1,4 @@
-import com.jfoenix.controls.JFXTextField;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,8 +13,11 @@ import java.util.ArrayList;
 public class Main extends Application {
 
     static Parent root;
-    File days = new File("AllDays.txt");
-    File laughs = new File("AllLaughs.txt");
+    static Parent root2;
+    static Scene scene;
+
+    private File days = new File("AllDays.txt");
+    private File laughs = new File("AllLaughs.txt");
 
     public static void main(String[] args) {
         launch(args);
@@ -25,10 +26,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, URISyntaxException {
         root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+        root2 = FXMLLoader.load(getClass().getResource("/ninja.fxml"));
         root.getStylesheets().add("/stylesheets/main.css");
+        root2.getStylesheets().add("/stylesheets/ninja.css");
+
         primaryStage.setTitle("HihihiCounter");
-        primaryStage.setScene(new Scene(root, 300, 300));
+        int width = 300;
+        int height = 300;
+        scene = new Scene(root, width, height);
+        primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("/images/icon.png"));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         if (!days.exists()) {

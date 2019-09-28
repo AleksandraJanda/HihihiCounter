@@ -1,13 +1,20 @@
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class Controller {
+
+    @FXML
+    private AnchorPane pane;
 
     @FXML
     JFXButton hihihi;
@@ -38,7 +45,9 @@ public class Controller {
         count();
         add();
         moodChanger();
-        save();
+        if (count % 10 == 0) {
+            save();
+        }
     }
 
     private void count() {
@@ -65,8 +74,8 @@ public class Controller {
     }
 
     private void addDayLaughCount(LocalDateTime date) {
-        if(FakeDatabase.isLastCurrentDay()){
-            FakeDatabase.listOfDayLaughCounts.remove(FakeDatabase.listOfDayLaughCounts.size()-1);
+        if (FakeDatabase.isLastCurrentDay()) {
+            FakeDatabase.listOfDayLaughCounts.remove(FakeDatabase.listOfDayLaughCounts.size() - 1);
         }
         FakeDatabase.listOfDayLaughCounts.add(date.toLocalDate() + " " + count);
     }
@@ -77,17 +86,32 @@ public class Controller {
             mood.setImage(great);
         } else if (count > 10 && count <= 20) {
             mood.setImage(ok);
-        } else if (count > 20 && count <= 40) {
+        } else if (count > 20 && count <= 30) {
             mood.setImage(normal);
-        } else if (count > 40 && count <= 60) {
+        } else if (count > 30 && count <= 40) {
             mood.setImage(bad);
-        } else if (count > 60) {
+        } else if (count > 40) {
             mood.setImage(angry);
         }
     }
 
     //stylesheet change
-    void ninjaModeOn() {
+    @FXML
+    void ninjaModeOn(ActionEvent ae) {
+        changeStageSize(ae, 70);
+        Main.scene.setRoot(Main.root2);
+    }
 
+    @FXML
+    void ninjaModeOff(ActionEvent ae) {
+        changeStageSize(ae, 330);
+        Main.scene.setRoot(Main.root);
+
+    }
+
+    private void changeStageSize(ActionEvent ae, int height) {
+        Node source = (Node) ae.getSource();
+        Window theStage = source.getScene().getWindow();
+        theStage.setHeight(height);
     }
 }

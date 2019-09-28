@@ -1,9 +1,8 @@
 .root {
     -fx-background-color: #ffffff;
-    -fx-opacity: 100%;
 }
 
 .menu-button {
     -fx-padding: 5px;
-    -fx-background-color: #fcba03;
+    -fx-background-color: #f4f4f4;
 }

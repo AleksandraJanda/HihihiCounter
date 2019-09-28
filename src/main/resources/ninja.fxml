@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="40.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <JFXTextField fx:id="counter" alignment="CENTER" disable="true" editable="false" layoutX="92.0" layoutY="4.0" prefHeight="30.0" prefWidth="65.0" text="0" />
+      <JFXButton fx:id="hihihi" alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="4.0" onAction="#counter" prefHeight="30.0" prefWidth="91.0" ripplerFill="WHITE" styleClass="menu-button" stylesheets="@stylesheets/ninja.css" text="Hihihi">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="ninja" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="4.0" onAction="#ninjaModeOff" prefHeight="30.0" prefWidth="28.0" ripplerFill="WHITE" styleClass="menu-button" stylesheets="@stylesheets/ninja.css" text="&lt;-">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="save" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="4.0" onAction="#save" ripplerFill="WHITE" styleClass="menu-button" stylesheets="@stylesheets/ninja.css" text="SAVE">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="mood" fitHeight="30.0" fitWidth="28.0" layoutX="265.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/great.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>
