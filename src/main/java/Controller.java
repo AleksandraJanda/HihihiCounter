@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+
 public class Controller {
 
     @FXML
@@ -21,19 +24,21 @@ public class Controller {
     @FXML
     ImageView mood;
 
-    private int count = 0;
+    static int count = 0;
 
-    Image angry = new Image("/images/angry.png");
-    Image bad = new Image("/images/bad.png");
-    Image normal = new Image("/images/normal.png");
-    Image ok = new Image("/images/ok.png");
-    Image great = new Image("/images/great.png");
+    private Image angry = new Image("/images/angry.png");
+    private Image bad = new Image("/images/bad.png");
+    private Image normal = new Image("/images/normal.png");
+    private Image ok = new Image("/images/ok.png");
+    private Image great = new Image("/images/great.png");
 
     //counting
     @FXML
-    void counter() {
+    void counter() throws IOException {
         count();
+        add();
         moodChanger();
+        save();
     }
 
     private void count() {
@@ -42,7 +47,29 @@ public class Controller {
     }
 
     //save to files
+    @FXML
+    void save() throws IOException {
+        FakeDatabase.saveData(FakeDatabase.listOfDayLaughCounts, FakeDatabase.allDays);
+        FakeDatabase.saveData(FakeDatabase.listOfSingleLaughs, FakeDatabase.allLaughs);
+    }
 
+    //add laughs
+    private void add() {
+        LocalDateTime date = LocalDateTime.now();
+        addSingleLaugh(date);
+        addDayLaughCount(date);
+    }
+
+    private void addSingleLaugh(LocalDateTime date) {
+        FakeDatabase.listOfSingleLaughs.add(date.toLocalDate() + " " + date.toLocalTime());
+    }
+
+    private void addDayLaughCount(LocalDateTime date) {
+        if(FakeDatabase.isLastCurrentDay()){
+            FakeDatabase.listOfDayLaughCounts.remove(FakeDatabase.listOfDayLaughCounts.size()-1);
+        }
+        FakeDatabase.listOfDayLaughCounts.add(date.toLocalDate() + " " + count);
+    }
 
     //mood change
     private void moodChanger() {
@@ -60,5 +87,7 @@ public class Controller {
     }
 
     //stylesheet change
+    void ninjaModeOn() {
 
+    }
 }
